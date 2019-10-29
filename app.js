@@ -68,9 +68,19 @@ app.get('/apps', ( req, res) => {
     //     }
     //   }
     let results =(actionRes).concat(strategyRes).concat(casualRes).concat(puzzleRes).concat(cardRes).concat(arcadeRes)
+   
+
+
+    if(results.length>0){
     res
     .json(results)
-  });
+    }
+    else {
+    res 
+    .status(400)
+    .send('No results in the Action, Puzzle, Strategy, Casual, Arcade, or Card genres');
+    }
+});
 
   app.listen(8000, () => {
     console.log('Server started on PORT 8000');
